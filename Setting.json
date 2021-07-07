@@ -1,0 +1,29 @@
+{
+	"lang":{
+		"ko":[
+			{"title": "삶을 동물의 숲 처럼"},
+			{"lang": "언어"},
+			{"background_opacity": "배경 밝기: "},
+			{"music_volume": "음악 볼륨: "},
+			{"play": "재생"},
+			{"pause": "일시정지"},
+			{"warning": "주의!"},
+			{"warning_message": "해당 서비스는 초기버전입니다!\n개발자가 발견하지 못한 오류들이나\n미공개된 기능이 있을 수 있습니다!"},
+			{"terms": "해당 서비스를 이용시 \n 당사의 이용약관에 동의한것으로 간주합니다.\n약관: https://account.rococpy.com/register"},
+			{"close": "닫기"}
+		],
+
+		"en":[
+			{"title": "Life like Animal Crossing"},
+			{"lang": "Language"},
+			{"background_opacity": "Background Brightness: "},
+			{"music_volume": "Music Volume: "},
+			{"play": "Play"},
+			{"pause": "Pause"},
+			{"warning": "Caution!"},
+			{"warning_message": "This service is the initial version!\nThere may be errors\nunpublished features the developer hasn't found!"},
+			{"terms": "By using the service, \n you agree to our terms of use.\nTerms: https://account.rococpy.com/register"},
+			{"close": "Close"}
+		]
+	}
+}

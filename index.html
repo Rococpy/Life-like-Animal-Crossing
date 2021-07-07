@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Life like Animal Crossing</title>
+	<script type="text/javascript" src="https://cdn.rococpy.com/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+	<div class="main">
+		<img src="https://lac.rococpy.com/img/03.jpg" alt="">
+		<div>
+			<h2 class="title"></h2>
+			<br>
+			<div class="contents">
+				<div>
+					<label class="lang"></label>
+					<select id="changelang">
+						<option value="ko">한국어</option>
+						<option value="en">English</option>
+					</select>
+				</div>
+				<br>
+				<div>
+					<label class="background_opacity"></label>
+					<input class="background_opacity_input" type="range" min="0" max="100" value="100">
+				</div>
+				<br>
+				<div>
+					<label class="music_volume"></label>
+					<input class="music_volume_input" type="range" min="0" max="100" value="100">
+				</div>
+			</div>
+			<br>
+			<button class="play"></button>
+
+		</div>
+	</div>
+	<div class="modal">
+		<div class="modal_contents">
+			<h3 class="warning"></h3>
+			<br>
+			<pre class="warning_message"></pre>
+			<br>
+			<pre class="terms"></pre>
+			<br>
+			<button class="close"></button>
+		</div>
+		<div class="modal_background"></div>
+	</div>
+	<audio></audio>
+	<div class="infocomp">
+		<small id="version"></small><br>
+		<small id="copyright">Copyright 2019 - 2021 Rococpy All rights reserved.</small>
+	</div>
+
+	<style>
+		@font-face {
+			font-family: "sdmu";
+			src: url("https://cdn.rococpy.com/fonts/animal crossing/sindimaru.ttf");
+		}
+
+		:root {
+		  --background: #E5FFB3;
+		  --background-accent: #DBF8A3;
+		  --background-accent-2: #BDE66E;
+		  --light: #92DE34;
+		  --dark: #69BC22;
+		  --text: #025600;
+		}
+
+		* {
+			font-family: "sdmu";
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			box-sizing: border-box;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+		}
+
+		.main {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: black;
+			font-size: 2rem;
+		}
+
+		.main > div {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			padding: 2.5rem;
+			border-radius: 20px;
+			background: rgba(255,255,255,0.7);
+		}
+
+		.main > div label{
+			font-size: 1.5rem;
+		}
+
+		.contents > div{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.main > div input{
+			width: 150px;
+		}
+
+		select {
+			width: 150px;
+			padding: 0.5rem;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		button {
+			transition: 0.3s all;
+		  display: block;
+		  cursor: pointer;
+		  outline: none;
+		  border: none;
+		  background-color: var(--light);
+		  width: 100%;
+		  height: 100%;
+		  border-radius: 30px;
+		  font-size: 1rem;
+		  font-weight: 600;
+		  padding: 1rem;
+		  color: var(--text);
+		  background-size: 100% 100%;
+		  box-shadow: 0 0 0 7px var(--light) inset;
+		  margin-bottom: 15px;
+		}
+
+		button:active {
+			transform: scale(0.9);
+		}
+
+		.modal{
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			transition: 0.3s all;
+		}
+
+		.modal_background{
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: rgba(255,255,255,0.5);
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		.modal_contents{
+			max-width: 550px;
+			transition: 0.3s all;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 90%;
+			background: white;
+			padding: 1rem;
+			border-radius: 10px;
+		}
+
+		.infocomp{
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			text-align: right;
+		}
+
+		@keyframes modal {
+			0% {
+    		transform: translate(-50%, -50%) scale(0.7);
+			}
+			80% {
+    		transform: translate(-50%, -50%) scale(1.05);
+			}
+			100% {
+    		transform: translate(-50%, -50%) scale(1);
+			}
+		}
+
+		@media only screen and (max-width: 970px) {
+			.main {
+				font-size: 1.5rem;
+			}
+
+			.main > div {
+				padding: 2rem;
+			}
+
+			.main > div label{
+				font-size: 1rem;
+			}
+
+			.main > div input, select{
+				width: 86px;
+			}
+
+			select {
+				font-size: 0.7rem;
+				padding: 0.35rem;
+			}
+
+		}
+
+		@media only screen and (max-width: 780px) {
+			.main {
+				font-size: 1rem;
+			}
+
+			.main > div {
+				padding: 1.5rem;
+			}
+
+			.main > div label{
+				font-size: 0.7rem;
+			}
+
+			select {
+				font-size: 0.5rem;
+				padding: 0.2rem;
+			}
+		}
+
+		@media only screen and (max-width: 500px) {
+			.main {
+				font-size: 1rem;
+			}
+
+			.main > div {
+				width: 80%;
+				padding: 1.5rem;
+			}
+
+			.main > div label{
+				font-size: 0.7rem;
+			}
+
+			select {
+				font-size: 0.5rem;
+				padding: 0.2rem;
+			}
+		}
+
+	</style>
+</body>
+</html>
